@@ -43,7 +43,8 @@
         }
 
         function save() {
-
+            $GLOBALS['DB']->exec("INSERT INTO patients (id) VALUES ('{$this->getName()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         static function getAll() {

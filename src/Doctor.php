@@ -4,12 +4,10 @@
 
         private $name;
         private $specialty;
-        private $patients;
 
         function __construct($name_input, $specialty_input) {
             $this->name = $name_input;
             $this->specialty = $specialty_input;
-            $this->patients = [];
         }
 
         function setName($name_input) {
@@ -34,6 +32,11 @@
 
         static function getAll() {
 
+        }
+
+        function save() {
+            $GLOBALS['DB']->exec("INSERT INTO doctors (name, specialty) VALUES ('{$this->getName()}', '{$this->getSpecialty()}' );");
+            $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
 
