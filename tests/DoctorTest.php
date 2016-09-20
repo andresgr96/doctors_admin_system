@@ -12,7 +12,8 @@
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
-    class DoctorTest extends PHPUnit_Framework_TestCase {
+    class DoctorTest extends PHPUnit_Framework_TestCase
+    {
 
         protected function tearDown()
         {

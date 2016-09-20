@@ -50,7 +50,7 @@
         }
 
         function save() { // we do not need to set the ID because the datebase sets it
-            $GLOBALS['DB']->exec("INSERT INTO doctors (name, specialty) VALUES ('{$this->getName()}', '{$this->getSpecialty()}' );");
+            $GLOBALS['DB']->exec("INSERT INTO doctors (name, specialty) VALUES ('{$this->getName()}', '{$this->getSpecialty()}');");
             $this->doc_id = $GLOBALS['DB']->lastInsertId();
         }
 

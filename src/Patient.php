@@ -4,13 +4,13 @@
         private $id;
         private $name;
         private $birthdate;
-        private $doctor;
+        private $doc_id;
 
-        function __construct($patient_id = null, $name_input, $birthdate_input, $doctor_name) {
+        function __construct($patient_id = null, $name_input, $birthdate_input, $doctor_id = null) {
             $this->id = $patient_id;
             $this->name = $name_input;
             $this->birthdate = $birthdate_input;
-            $this->doctor = $doctor_name;
+            $this->doc_id = $doctor_id;
         }
 
         function getId() {
@@ -34,34 +34,39 @@
             return $this->birthdate;
         }
 
-        function setDoctor($doctor_name) {
-            $this->doctor = $doctor_name;
+
+        function getDoctorId() {
+            return $this->doc_id;
         }
 
-        function getDoctor() {
-            return $this->doctor;
-        }
-
-        function save() {
-            $GLOBALS['DB']->exec("INSERT INTO patients (id) VALUES ('{$this->getName()}');");
-            $this->id = $GLOBALS['DB']->lastInsertId();
-        }
 
         static function getAll() {
             $returned_patients = $GLOBALS['DB']->query("SELECT * FROM patients;");
             $patients = array();
             foreach($returned_patients as $patient) {
-                $id = $patient['id'];
+                $id = $patient['patient_id'];
                 $name = $patient['name'];
                 $birthdate = $patient['birthdate'];
-                $doctor = $patient['doctor'];
-                $new_patient = new Patient($id, $name, $birthdate, $doctor);
+                $doctor_id = $patient['doc_id'];
+                $new_patient = new Patient($id, $name, $birthdate, $doctor_id);
                 array_push($patients, $new_patient);
             }
             return $patients;
         }
 
+        function save() {
+            $GLOBALS['DB']->exec("INSERT INTO patients (name, birthdate, doc_id) VALUES ('{$this->getName()}', '{$this->getBirthdate()}', {$this->getDoctorId()});");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+
+        }
+
+        static function deleteAll()
+        {
+             $GLOBALS['DB']->exec("DELETE FROM patients;");
+        }
+
     }
+
 
 
 
