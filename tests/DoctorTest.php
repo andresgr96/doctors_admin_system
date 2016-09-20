@@ -7,7 +7,7 @@
 
     require_once "src/Doctor.php";
 
-    $server = 'mysql:host=localhost:8889;dbname=doctors_office';
+    $server = 'mysql:host=localhost:8889;dbname=doctor_office';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);

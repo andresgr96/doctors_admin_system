@@ -31,7 +31,15 @@
         }
 
         static function getAll() {
-
+            $returned_doctors = $GLOBALS['DB']->query("SELECT * FROM doctors;");
+            $doctors = array();
+            foreach($returned_doctor as $doctor) {
+              $name = $doctor['name'];
+              $specialty = $doctor['specialty'];
+              $new_doctor = new Doctor($name, $specialty);
+              array_push($doctors, $new_doctor);
+            }
+            return $doctors;
         }
 
         function save() {
