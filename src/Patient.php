@@ -51,12 +51,12 @@
             $returned_patients = $GLOBALS['DB']->query("SELECT * FROM patients;");
             $patients = array();
             foreach($returned_patients as $patient) {
-              $id = $patient['id'];
-              $name = $patient['name'];
-              $birthdate = $patient['birthdate'];
-              $doctor = $patient['doctor'];
-              $new_patient = new Patient($id, $name, $birthdate, $doctor);
-              array_push($patients, $new_patient);
+                $id = $patient['id'];
+                $name = $patient['name'];
+                $birthdate = $patient['birthdate'];
+                $doctor = $patient['doctor'];
+                $new_patient = new Patient($id, $name, $birthdate, $doctor);
+                array_push($patients, $new_patient);
             }
             return $patients;
         }

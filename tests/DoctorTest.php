@@ -14,10 +14,10 @@
 
     class DoctorTest extends PHPUnit_Framework_TestCase {
 
-        // protected function tearDown()
-        // {
-        //     Doctor::deleteAll();
-        // }
+        protected function tearDown()
+        {
+            Doctor::deleteAll();
+        }
 
         function test_save() {
 

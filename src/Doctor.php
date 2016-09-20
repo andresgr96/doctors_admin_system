@@ -54,6 +54,11 @@
             $this->doc_id = $GLOBALS['DB']->lastInsertId();
         }
 
+         static function deleteAll()
+        {
+              $GLOBALS['DB']->exec("DELETE FROM doctors;");
+        }
+
 
     }
 
